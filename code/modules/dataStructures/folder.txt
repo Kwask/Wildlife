@@ -1,1 +1,1 @@
-This folder contains the mobile object AI code
+This folder contains different useful data structures
