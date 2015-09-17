@@ -6,13 +6,13 @@
 class Mob
 {
 private:
-	static int mob_count_ = 0;
-	static int mob_ID_next_ = 0;
+	static unsigned int mob_count_ = 0;
+	static unsigned int mob_ID_next_ = 0;
 
 	FiniteStateMachine mind_;
 
-	int mob_ID_;
-	int target_ID_;
+	unsigned int mob_ID_;
+	unsigned int target_ID_;
 
 	int x_pos_;
 	int y_pos_;

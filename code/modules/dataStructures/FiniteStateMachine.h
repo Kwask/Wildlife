@@ -17,7 +17,7 @@ typedef void(*voidptr)(); // dear god, I hate this syntax
 class FiniteStateMachine
 {
 private:
-	std:stack <voidptr> stack;
+	std::stack <voidptr> stack_;
 
 public:
 	FiniteStateMachine();
@@ -25,8 +25,8 @@ public:
 	
 	void process();
 	void pushState( voidptr state );
-
-	voidptr popState();
+	void popState();
+	
 	voidptr getState();
 };
 
@@ -54,27 +54,20 @@ void FiniteStateMachine::pushState( voidptr state )
 {
 	if( state != getState() )
 	{
-		stack.push( state );
+		stack_.push( state );
 	}
 }
 
-voidptr FiniteStateMachine::popState()
+void FiniteStateMachine::popState()
 {
-	if( stack.size() > 0 )
-	{
-		return stack.pop();
-	}
-	else
-	{
-		return nullptr;
-	}
+	stack_.pop();
 }
 
 voidptr FiniteStateMachine::getState()
 {
-	if( stack.size() > 0 )
+	if( !stack_.empty() )
 	{
-		return stack.top();
+		return stack_.top();
 	}
 	else
 	{
