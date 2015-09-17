@@ -9,7 +9,7 @@ private:
 	static int mob_count_ = 0;
 	static int mob_ID_next_ = 0;
 
-	Mind mind_;
+	FiniteStateMachine mind_;
 
 	int mob_ID_;
 	int target_ID_;
