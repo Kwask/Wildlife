@@ -22,5 +22,5 @@ LINUX_BIN = run.out
  
 #Compile(output into error.txt if there is an error), link, then run
 linux:
-        $(CC) $(CFLAGS) -c $(FILES)
-        $(CC) $(CFLAGS) $(OBJS) -o $(LINUX_BIN) $(LINKER_FLAGS)
+	$(CC) $(CFLAGS) -c $(FILES)
+	$(CC) $(CFLAGS) $(OBJS) -o $(LINUX_BIN) $(LINKER_FLAGS)
