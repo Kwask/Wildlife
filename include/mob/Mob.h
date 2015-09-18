@@ -26,15 +26,16 @@ public:
 	Mob();
 	~Mob();
 
-	int x_pos();
-	int y_pos();
-	int mob_count();
-	int mob_ID();
-	int target_ID();
+	int xPos();
+	int yPos();
+	int mobCount();
+	int mobID();
+	int targetID();
 
-	void x_pos( const int x_pos_ );
-	void y_pos( const int y_pos_ );
-	void target_ID( const int target_ID_ );
+	void xPos( const int x_pos_ );
+	void yPos( const int y_pos_ );
+	void targetID( const int target_ID_ );
+	void process();
 };
 
 Mob::Mob()
@@ -50,27 +51,27 @@ Mob::~Mob()
 	mob_count--;
 }
 
-int Mob::x_pos()
+int Mob::xPos()
 {
 	return x_pos_;
 }
 
-int Mob::y_pos()
+int Mob::yPos()
 {
 	return y_pos_;
 }
 
-int Mob::mob_count()
+int Mob::mobCount()
 {
 	return mob_count_;
 }
 
-int Mob::mob_ID()
+int Mob::mobID()
 {
 	return mob_ID_;
 }
 
-int Mob::target_ID()
+int Mob::targetID()
 {
 	return target_ID_;
 }
@@ -87,17 +88,17 @@ void Mob::initiliaze()
 	y_vel_ = 0;
 }
 
-void Mob::x_pos( const int x_pos_ )
+void Mob::xPos( const int x_pos_ )
 {
 	this->x_pos_ = x_pos_;
 }
 
-void Mob::y_pos( const int y_pos_ )
+void Mob::yPos( const int y_pos_ )
 {
 	this->y_pos_ = y_pos_;
 }
 
-void Mob::target_ID( const int target_ID_ )
+void Mob::targetID( const int target_ID_ )
 {
 	this->target_ID_ = target_ID_;
 }
