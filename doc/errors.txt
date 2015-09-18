@@ -1,0 +1,4 @@
+./include/Engine.h: In constructor ‘Engine::Engine()’:
+./include/Engine.h:39:25: error: invalid use of non-static member function
+  state.pushState( start );
+                         ^

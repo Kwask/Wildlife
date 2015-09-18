@@ -6,8 +6,8 @@
 class Mob
 {
 private:
-	static unsigned int mob_count_ = 0;
-	static unsigned int mob_ID_next_ = 0;
+	static unsigned int mob_count_;
+	static unsigned int mob_ID_next_;
 
 	FiniteStateMachine mind_;
 
@@ -38,17 +38,20 @@ public:
 	void process();
 };
 
+unsigned int Mob::mob_count_ = 0;
+unsigned int Mob::mob_ID_next_ = 0;
+
 Mob::Mob()
 {
 	initiliaze();
 
-	mob_ID_next++;
-	mob_count++;
+	mob_ID_next_++;
+	mob_count_++;
 }
 
 Mob::~Mob()
 {
-	mob_count--;
+	mob_count_--;
 }
 
 int Mob::xPos()
@@ -78,7 +81,7 @@ int Mob::targetID()
 
 void Mob::initiliaze()
 {
-	mob_ID_ = mob_ID_next;
+	mob_ID_ = mob_ID_next_;
 	target_ID_ = 0;
 	
 	x_pos_ = 0;

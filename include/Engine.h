@@ -1,7 +1,6 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
-#include <GL/glfw3.h>
 #include "FiniteStateMachine.h"
 
 class Engine
@@ -12,8 +11,14 @@ private:
 	void start();
 	void process();
 	void stop();
-	void render(); // Render the screen
-	void poll(); // Poll events
+	void render();
+	void poll();
+
+	static void simStart();
+	static void simProcess();
+	static void simStop();
+	static void simRender();
+	static void simPoll();
 
 	FiniteStateMachine state;
 	static Engine* instance;
@@ -51,7 +56,7 @@ Engine* Engine::getInstance()
 
 void Engine::start()
 {
-	state.pushState( process );
+	state.pushState( simProcess );
 }
 
 void Engine::process()
