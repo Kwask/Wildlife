@@ -1,27 +1,4 @@
-#ifndef ENGINE_H
-#define ENGINE_H
-
-#include "Debug.h"
-#include "State.h"
-#include "EngineStates.h"
-
-class Engine
-{
-private:
-	Engine();
-
-	FiniteStateMachine state_;
-	static Engine* instance_;
-
-public:
-	static Engine* getInstance();
-
-	virtual ~Engine();
-
-	void handle();
-
-	bool shouldStop();
-};
+#include "Engine.h"
 
 Engine* Engine::instance_ = nullptr;
 
@@ -62,5 +39,3 @@ bool Engine::shouldStop()
 
 	return false;
 }
-
-#endif

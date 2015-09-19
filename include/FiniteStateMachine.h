@@ -2,6 +2,7 @@
 #define FINITESTATEMACHINE_H
 
 #include <stack>
+#include "State.h"
 
 /*
 	This is a finite state machine that utilizes a stack of function
@@ -12,67 +13,24 @@
 	the mob's different behaviors as void funcs.
 */ 
 
-typedef void(*voidptr)(); // dear god, I hate this syntax
+#include "State.h"
 
 class FiniteStateMachine
 {
-private:
-	std::stack <voidptr> stack_;
+protected:
+	void cleanup();
+
+	State* state_;
 
 public:
 	FiniteStateMachine();
+	FiniteStateMachine( State* state );
 	~FiniteStateMachine();
-	
-	void process();
-	void pushState( voidptr state );
-	void popState();
-	
-	voidptr getState();
+
+	void changeState();
+	void changeState( State* state );
+	char* getStateName();
+
 };
-
-FiniteStateMachine::FiniteStateMachine()
-{
-
-}
-
-FiniteStateMachine::~FiniteStateMachine()
-{
-
-}
-
-void FiniteStateMachine::process()
-{
-	voidptr state = getState();
-
-	if( state != nullptr )
-	{
-		state();
-	}
-}
-
-void FiniteStateMachine::pushState( voidptr state )
-{
-	if( state != getState() )
-	{
-		stack_.push( state );
-	}
-}
-
-void FiniteStateMachine::popState()
-{
-	stack_.pop();
-}
-
-voidptr FiniteStateMachine::getState()
-{
-	if( !stack_.empty() )
-	{
-		return stack_.top();
-	}
-	else
-	{
-		return nullptr;
-	}
-}
 
 #endif

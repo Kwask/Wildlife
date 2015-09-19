@@ -9,26 +9,24 @@ ODIR = ./obj
 DDIR = ./doc
 BDIR = ./bin
 
-# .cpp files
+# top level files
 SOURCES = main.cpp 
 
-# header filenames without directories
-_DEPS = Debug.h Engine.h FiniteStateMachine.h Mob.h worldgen.h
+# everything inside include/
+_DEPH = Debug.h Engine.h FiniteStateMachine.h Mob.h
+# grabbing the complimentary .cpp files for the headers
+_DEPSRC = $(FILES:.h=.cpp)
+# combining into one variable
+DEPS = $(DEPH) $(DEPSRC) 
 
-# filenames without directories
-_FILES = $(SOURCES) $(_DEPS)
-
-# object filenames without directories
-_OBJS = $(_FILES:.cpp=.o)
-
-# header filenames with directories
+# include/ filenames with directory
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-# filenames with directories
+# all files
 FILES = $(SOURCES) $(DEPS)
 
-# object filenames with directories
-OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
+# .o filenames with directory
+OBJS = $(FILES:.cpp=.o)
 
 # the linker flags for the compiler
 LINKER_FLAGS = -lGLEW -lglfw3 -lGL -lX11 -lXi -lXrandr -lXxf86vm -lXinerama -lXcursor -lrt -lm -pthread
