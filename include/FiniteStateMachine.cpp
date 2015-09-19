@@ -1,11 +1,13 @@
+#include "Debug.h"
 #include "FiniteStateMachine.h"
+#include "State.h"
 
 FiniteStateMachine::FiniteStateMachine()
 {
-
+	state_ = nullptr;
 }
 
-FiniteStateMachine::FiniteStateMachine( State* state );
+FiniteStateMachine::FiniteStateMachine( State* state )
 {
 	state_ = state;
 }
@@ -17,7 +19,9 @@ FiniteStateMachine::~FiniteStateMachine()
 
 void FiniteStateMachine::cleanup()
 {
-	if( state_ )
+	debugging("FiniteStateMachine::cleanup() called");
+
+	if( state_ != nullptr )
 	{
 		delete state_;
 		state_ = nullptr;
@@ -26,16 +30,22 @@ void FiniteStateMachine::cleanup()
 
 void FiniteStateMachine::changeState()
 {
-	state_ = state_.handle();
+	debugging("FiniteStateMachine::changestate() called");
+	if( state_ != nullptr )
+	{
+		state_ = state_->handle();
+	}
 }
 
-void FiniteStateMachien::changeState( State* state );
+void FiniteStateMachine::changeState( State* state )
 {
+	debugging("FiniteStateMachine::changestate() called with forced state");
 	cleanup();
 	state_ = state;
 }
 
-char* FiniteStateMachine::getStateName()
+char const* FiniteStateMachine::getStateName()
 {
-	return state_.toString();
+	debugging("FiniteStateMachine::getStateName() called");
+	return state_->toString();
 }

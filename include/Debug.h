@@ -1,6 +1,8 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
+#include <string>
+
 const bool DEBUG = true; // set to true to enable debug messages
 
 // displays a debug message if debug mode is active

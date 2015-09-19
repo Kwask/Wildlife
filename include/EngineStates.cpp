@@ -1,7 +1,8 @@
+#include "State.h"
 #include "EngineStates.h"
 
 // EngineStart
-void EngineStart::State* handle()
+State* EngineStart::handle()
 {
 	debugging("ENGINE STARTING...");
 	return new EngineProcess;
@@ -10,28 +11,28 @@ void EngineStart::State* handle()
 }
 
 // EngineProcess
-void EngineProcess::State* handle()
+State* EngineProcess::handle()
 {
 	return new EnginePoll;
 	delete this;
 }
 
 // EnginePoll
-void EnginePoll::State* handle()
+State* EnginePoll::handle()
 {
 	return new EngineRender;
 	delete this;
 }
 
 // EngineRender
-void EngineRender::State* handle()
+State* EngineRender::handle()
 {
 	return new EngineProcess;
 	delete this;
 }
 
 // EngineStop
-void EngineStop::State* handle()
+State* EngineStop::handle()
 {
-
+	return this;
 }

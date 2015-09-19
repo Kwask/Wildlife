@@ -6,7 +6,7 @@ int main( int argc, char **argv )
 	debugging("ENGINE INSTANTIZING...");
 	Engine* engine = Engine::getInstance();
 
-	while( !engine->shouldStop() )
+	while( true )
 	{
 		engine->handle();
 	}

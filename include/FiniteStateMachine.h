@@ -1,7 +1,6 @@
 #ifndef FINITESTATEMACHINE_H
 #define FINITESTATEMACHINE_H
 
-#include <stack>
 #include "State.h"
 
 /*
@@ -11,9 +10,7 @@
 
 	Each mob has a FSM as a "mind" and so to use it, you need to define 
 	the mob's different behaviors as void funcs.
-*/ 
-
-#include "State.h"
+*/
 
 class FiniteStateMachine
 {
@@ -29,7 +26,7 @@ public:
 
 	void changeState();
 	void changeState( State* state );
-	char* getStateName();
+	char const* getStateName();
 
 };
 

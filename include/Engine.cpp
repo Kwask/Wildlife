@@ -1,11 +1,17 @@
+#include <string>
+#include "Debug.h"
 #include "Engine.h"
+#include "FiniteStateMachine.h"
+#include "State.h"
+#include "EngineStates.h"
 
 Engine* Engine::instance_ = nullptr;
 
 Engine::Engine()
 {
 	debugging( "ENGINE INSTANTIZED" );
-	FiniteStateMachine state_( new EngineStart );
+	state_.changeState( new EngineStart );
+//	debugging( "ENGINE STATE: " + std::string( state_.getStateName() ) );
 }
 
 Engine::~Engine()
@@ -27,15 +33,5 @@ Engine* Engine::getInstance()
 
 void Engine::handle()
 {
-	FiniteStateMachine.handle();
-}
-
-bool Engine::shouldStop()
-{
-	if( state_.getState() == nullptr )
-	{
-		return true;
-	}
-
-	return false;
+	state_.changeState();
 }
