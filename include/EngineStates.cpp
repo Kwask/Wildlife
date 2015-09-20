@@ -5,6 +5,11 @@
 // EngineStart
 EngineStart::~EngineStart() {}
 
+void EngineStart::cleanup()
+{
+
+}
+
 State* EngineStart::handle()
 {
 	debugging("ENGINE STARTING...");
@@ -15,6 +20,11 @@ State* EngineStart::handle()
 // EngineProcess
 EngineProcess::~EngineProcess() {}
 
+void EngineProcess::cleanup()
+{
+	
+}
+
 State* EngineProcess::handle()
 {
 	return &EngineStateMachine::poll;
@@ -22,6 +32,11 @@ State* EngineProcess::handle()
 
 // EnginePoll
 EnginePoll::~EnginePoll() {}
+
+void EnginePoll::cleanup()
+{
+	
+}
 
 State* EnginePoll::handle()
 {
@@ -31,6 +46,11 @@ State* EnginePoll::handle()
 // EngineRender
 EngineRender::~EngineRender() {}
 
+void EngineRender::cleanup()
+{
+	
+}
+
 State* EngineRender::handle()
 {
 	return &EngineStateMachine::process;
@@ -38,6 +58,11 @@ State* EngineRender::handle()
 
 // EngineStop
 EngineStop::~EngineStop() {}
+
+void EngineStop::cleanup()
+{
+	
+}
 
 State* EngineStop::handle()
 {

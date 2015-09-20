@@ -13,8 +13,9 @@ protected:
 public:
 	~EngineStart();
 
-	virtual State* handle();
+	virtual void cleanup();
 
+	virtual State* handle();
 };
 
 // Starts the process series of events
@@ -28,6 +29,8 @@ protected:
 public:
 	~EngineProcess();
 
+	virtual void cleanup();
+
 	virtual State* handle();
 };
 
@@ -39,6 +42,8 @@ protected:
 
 public:
 	~EnginePoll();
+
+	virtual void cleanup();
 
 	virtual State* handle();
 };
@@ -52,6 +57,8 @@ protected:
 public:
 	~EngineRender();
 
+	virtual void cleanup();
+
 	virtual State* handle();
 };
 
@@ -63,6 +70,8 @@ protected:
 
 public:
 	~EngineStop();
+
+	virtual void cleanup();
 
 	virtual State* handle();
 };

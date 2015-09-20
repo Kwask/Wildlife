@@ -21,11 +21,15 @@ void FiniteStateMachine::cleanup()
 {
 	debugging("FiniteStateMachine::cleanup() called");
 
-	if( state_ != nullptr )
+	if( state_ )
 	{
-		delete state_;
+		state_->cleanup();
 		state_ = nullptr;
-		debugging("deleted state_ and assigned to nullptr");
+		debugging("state_.cleanup() and assigned to nullptr");
+	}
+	else
+	{
+		debugging("state_ already nullptr");	
 	}
 }
 
@@ -38,8 +42,10 @@ void FiniteStateMachine::changeState()
 		debugging("state_ is not nullptr");
 		//state_ = state_->handle();
 	}
-
-	debugging("state_ is nullptr");
+	else
+	{
+		debugging("state_ is nullptr");
+	}
 }
 
 void FiniteStateMachine::changeState( State* state )

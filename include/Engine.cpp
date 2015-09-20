@@ -10,7 +10,7 @@ Engine* Engine::instance_ = nullptr;
 Engine::Engine()
 {
 	debugging( "ENGINE INSTANTIZED" );
-	state_.changeState( new EngineStart );
+	state_.changeState( &EngineStateMachine::start );
 //	debugging( "ENGINE STATE: " + std::string( state_.getStateName() ) );
 }
 
