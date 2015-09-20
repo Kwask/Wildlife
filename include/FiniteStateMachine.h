@@ -1,4 +1,4 @@
-#ifndef FINITESTATEMACHINE_H
+ #ifndef FINITESTATEMACHINE_H
 #define FINITESTATEMACHINE_H
 
 #include "State.h"

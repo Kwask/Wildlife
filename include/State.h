@@ -7,6 +7,7 @@ protected:
 	char const* name = ""; 
 
 public:
+	virtual ~State();
 	virtual State* handle() = 0; // Handles all actions of the current state and transition to the next state
 	char const* toString();
 };

@@ -2,7 +2,7 @@
 #define ENGINE_H
 
 #include "Debug.h"
-#include "FiniteStateMachine.h"
+#include "EngineStateMachine.h"
 #include "State.h"
 
 class Engine
@@ -10,7 +10,7 @@ class Engine
 private:
 	Engine();
 
-	FiniteStateMachine state_;
+	EngineStateMachine state_;
 	static Engine* instance_;
 
 public:
