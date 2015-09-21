@@ -44,7 +44,7 @@ float getinclin( float refx, float refy, float posx, float posy )
     int delx = posx-refx, dely = posy-refy;
     float ret = 0.0f;
 
-    if( !delx )
+    if( delx == 0 )
     {
         if( dely < 0.0f )
         {
@@ -60,7 +60,7 @@ float getinclin( float refx, float refy, float posx, float posy )
        	}
     }
 
-    if( !dely )
+    if( dely == 0 )
     {
 
         if( delx < 0.0f )
@@ -87,7 +87,7 @@ float getinclin( float refx, float refy, float posx, float posy )
 
     if( delx < 0 )
     {
-		ret = ret+90;
+		ret = ret+180;
     }
 
     return ret*0.0174532925;
@@ -144,8 +144,8 @@ class Square
 Square::Square( float x, float y )
 {
 
-	w = 50.0f;
-	h = 50.0f;
+	w = 500.0f;
+	h = 500.0f;
 
 	pos = makecoord( x, y );
 
@@ -190,7 +190,7 @@ void Square::draw()
 
 	glEnableClientState( GL_VERTEX_ARRAY );
 	glVertexPointer( 2, GL_FLOAT, 0, verts );
-	glDrawArrays( GL_LINE_LOOP, 0, 4 );
+	glDrawArrays( GL_TRIANGLE_FAN, 0, 4 );
 	glDisableClientState( GL_VERTEX_ARRAY );
 
 }
@@ -198,9 +198,11 @@ void Square::draw()
 int main( int argc, char **argv )
 {
 
+	//Declare the height and width of the window.
 	static int WINDOW_WIDTH = 800;
 	static int WINDOW_HEIGHT = 600;
 
+	//Do all initialization.
 	glfwInit();
 	GLFWwindow *window = glfwCreateWindow( WINDOW_WIDTH, WINDOW_HEIGHT, "Hello", nullptr, nullptr );
 	glfwMakeContextCurrent( window );
@@ -209,14 +211,17 @@ int main( int argc, char **argv )
 
 	glfwSwapInterval( 1 );
 
-	Square test( 100, 100 );
+	//Creating the square.
+	Square test( 300, 300 );
 
 	while( !glfwWindowShouldClose( window ) )
 	{
 
+		//Clearing the color buffer bit.
 		glClear( GL_COLOR_BUFFER_BIT );
 		glLoadIdentity();
 
+		//Pushing all the objects back a z level so they don't hit the clippig pane.
 		glTranslatef( 0.0f, 0.0f, -1.0f );
 		test.rotate( i );
 		test.draw();
