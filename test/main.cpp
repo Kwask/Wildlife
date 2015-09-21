@@ -144,8 +144,8 @@ class Square
 Square::Square( float x, float y )
 {
 
-	w = 500.0f;
-	h = 500.0f;
+	w = 50.0f;
+	h = 50.0f;
 
 	pos = makecoord( x, y );
 
@@ -173,6 +173,7 @@ void Square::rotate( float ang )
 void Square::draw()
 {
 
+	//Run the rotation function for each corner of the square.
 	coord a = rotateVector( makecoord( verts[0].x, verts[0].y ), this->ang );
 	coord b = rotateVector( makecoord( verts[1].x, verts[1].y ), this->ang );
 	coord c = rotateVector( makecoord( verts[2].x, verts[2].y ), this->ang );
@@ -227,6 +228,12 @@ int main( int argc, char **argv )
 		test.draw();
 
 		i+=0.01f;
+		if( i >= pi*2 )
+		{
+
+			i = 0.0f;
+
+		}
 
 		glfwPollEvents();
 		glfwSwapBuffers( window );
