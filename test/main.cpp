@@ -44,7 +44,7 @@ float getinclin( float refx, float refy, float posx, float posy )
     int delx = posx-refx, dely = posy-refy;
     float ret = 0.0f;
 
-    if( !delx )
+    if( delx==0 )
     {
         if( dely < 0.0f )
         {
@@ -60,7 +60,7 @@ float getinclin( float refx, float refy, float posx, float posy )
        	}
     }
 
-    if( !dely )
+    if( dely==0 )
     {
 
         if( delx < 0.0f )
@@ -156,10 +156,10 @@ Square::Square( float x, float y )
 
 	}
 
-	verts[0] = makecoord( -w/2.0f, -h/2.0f );
-	verts[1] = makecoord( w/2.0f, -h/2.0f );
-	verts[2] = makecoord( w/2.0f, h/2.0f );
-	verts[3] = makecoord( -w/2.0f, h/2.0f );
+	verts[0] = makecoord( -w, -h );
+	verts[1] = makecoord( w, -h );
+	verts[2] = makecoord( w, h );
+	verts[3] = makecoord( -w, h );
 
 }
 
@@ -190,7 +190,7 @@ void Square::draw()
 
 	glEnableClientState( GL_VERTEX_ARRAY );
 	glVertexPointer( 2, GL_FLOAT, 0, verts );
-	glDrawArrays( GL_LINE_LOOP, 0, 4 );
+	glDrawArrays( GL_TRIANGLE_FAN, 0, 4 );
 	glDisableClientState( GL_VERTEX_ARRAY );
 
 }
@@ -221,7 +221,7 @@ int main( int argc, char **argv )
 		test.rotate( i );
 		test.draw();
 
-		i+=0.01f;
+		//i+=0.01f;
 
 		glfwPollEvents();
 		glfwSwapBuffers( window );
