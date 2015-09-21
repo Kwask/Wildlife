@@ -8,10 +8,8 @@ EngineStart::~EngineStart() {}
 void EngineStart::cleanup() {}
 
 State* EngineStart::handle()
-{
-	debugging("ENGINE STARTING...");
+{	
 	return &EngineStateMachine::process;
-	debugging("ENGINE STARTED.");
 }
 
 char const* EngineStart::getName()

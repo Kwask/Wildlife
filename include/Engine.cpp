@@ -10,7 +10,9 @@ Engine* Engine::instance_ = nullptr;
 Engine::Engine()
 {
 	debugging( "ENGINE INSTANTIZED" );
+	debugging( "ENGINE STARTING..." );
 	state_.forceState( &EngineStateMachine::start );
+	debugging( "ENGINE STARTED." );
 	debugging( "ENGINE STATE: " + std::string( state_.getStateName() ) );
 }
 
@@ -21,14 +23,12 @@ Engine::~Engine()
 
 Engine* Engine::getInstance()
 {
-	Engine* instance = instance_;
-
 	if( !instance_ )
 	{
 		instance_ = new Engine;
 	}
 	
-	return instance;
+	return instance_;
 }
 
 void Engine::handle()
