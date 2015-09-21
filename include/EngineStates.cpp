@@ -5,10 +5,7 @@
 // EngineStart
 EngineStart::~EngineStart() {}
 
-void EngineStart::cleanup()
-{
-
-}
+void EngineStart::cleanup() {}
 
 State* EngineStart::handle()
 {
@@ -17,54 +14,67 @@ State* EngineStart::handle()
 	debugging("ENGINE STARTED.");
 }
 
+char const* EngineStart::getName()
+{
+	return name;
+}
+
 // EngineProcess
 EngineProcess::~EngineProcess() {}
 
-void EngineProcess::cleanup()
-{
-	
-}
+void EngineProcess::cleanup() {}
 
 State* EngineProcess::handle()
 {
 	return &EngineStateMachine::poll;
 }
 
+char const* EngineProcess::getName()
+{
+	return name;
+}
+
 // EnginePoll
 EnginePoll::~EnginePoll() {}
 
-void EnginePoll::cleanup()
-{
-	
-}
+void EnginePoll::cleanup() {}
 
 State* EnginePoll::handle()
 {
 	return &EngineStateMachine::render;
 }
 
+char const* EnginePoll::getName()
+{
+	return name;
+}
+
 // EngineRender
 EngineRender::~EngineRender() {}
 
-void EngineRender::cleanup()
-{
-	
-}
+void EngineRender::cleanup() {}
 
 State* EngineRender::handle()
 {
 	return &EngineStateMachine::process;
 }
 
+char const* EngineRender::getName()
+{
+	return name;
+}
+
 // EngineStop
 EngineStop::~EngineStop() {}
 
-void EngineStop::cleanup()
-{
-	
-}
+void EngineStop::cleanup() {}
 
 State* EngineStop::handle()
 {
 	return &EngineStateMachine::stop;
+}
+
+char const* EngineStop::getName()
+{
+	return name;
 }

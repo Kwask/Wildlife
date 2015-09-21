@@ -13,9 +13,11 @@ protected:
 public:
 	~EngineStart();
 
-	virtual void cleanup();
+	void cleanup();
 
-	virtual State* handle();
+	State* handle();
+
+	char const* getName();
 };
 
 // Starts the process series of events
@@ -29,9 +31,11 @@ protected:
 public:
 	~EngineProcess();
 
-	virtual void cleanup();
+	void cleanup();
 
-	virtual State* handle();
+	State* handle();
+
+	char const* getName();
 };
 
 // Starts the process series
@@ -43,9 +47,11 @@ protected:
 public:
 	~EnginePoll();
 
-	virtual void cleanup();
+	void cleanup();
 
-	virtual State* handle();
+	State* handle();
+
+	char const* getName();
 };
 
 // Processes events
@@ -57,9 +63,11 @@ protected:
 public:
 	~EngineRender();
 
-	virtual void cleanup();
+	void cleanup();
 
-	virtual State* handle();
+	State* handle();
+
+	char const* getName();
 };
 
 // Stops the engine
@@ -71,9 +79,11 @@ protected:
 public:
 	~EngineStop();
 
-	virtual void cleanup();
+	void cleanup();
 
-	virtual State* handle();
+	State* handle();
+
+	char const* getName();
 };
 
 #endif

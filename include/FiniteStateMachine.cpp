@@ -7,7 +7,7 @@ FiniteStateMachine::FiniteStateMachine()
 	state_ = nullptr;
 }
 
-FiniteStateMachine::FiniteStateMachine( State* state )
+FiniteStateMachine::FiniteStateMachine( State* const state )
 {
 	state_ = state;
 }
@@ -48,15 +48,24 @@ void FiniteStateMachine::changeState()
 	}
 }
 
-void FiniteStateMachine::changeState( State* state )
+void FiniteStateMachine::forceState( State* const state )
 {
-	debugging("FiniteStateMachine::changestate() called with forced state");
+	debugging("FiniteStateMachine::forcestate() called with forced state");
 	cleanup();
 	state_ = state;
+
+	if( state_ )
+	{
+		debugging("state_ given a state");
+	}
+	else
+	{
+		debugging("state_ is still nullptr");
+	}
 }
 
 char const* FiniteStateMachine::getStateName()
 {
 	debugging("FiniteStateMachine::getStateName() called");
-	return state_->toString();
+	return state_->getName();
 }

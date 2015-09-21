@@ -1,13 +1,11 @@
 #include "Mob.h"
 
 unsigned int Mob::mob_count_ = 0;
-unsigned int Mob::mob_ID_next_ = 0;
 
 Mob::Mob()
 {
 	initiliaze();
 
-	mob_ID_next_++;
 	mob_count_++;
 }
 
@@ -31,20 +29,19 @@ int Mob::mobCount()
 	return mob_count_;
 }
 
-int Mob::mobID()
+Mob* Mob::getMob()
 {
-	return mob_ID_;
+	return this;
 }
 
-int Mob::targetID()
+Mob* Mob::target()
 {
-	return target_ID_;
+	return target_;
 }
 
 void Mob::initiliaze()
 {
-	mob_ID_ = mob_ID_next_;
-	target_ID_ = 0;
+	target_ = nullptr;
 	
 	x_pos_ = 0;
 	y_pos_ = 0;
@@ -53,17 +50,17 @@ void Mob::initiliaze()
 	y_vel_ = 0;
 }
 
-void Mob::xPos( const int x_pos_ )
+void Mob::xPos( int const x_pos )
 {
-	this->x_pos_ = x_pos_;
+	x_pos_ = x_pos;
 }
 
-void Mob::yPos( const int y_pos_ )
+void Mob::yPos( int const y_pos )
 {
-	this->y_pos_ = y_pos_;
+	y_pos_ = y_pos;
 }
 
-void Mob::targetID( const int target_ID_ )
+void Mob::target( Mob* const target )
 {
-	this->target_ID_ = target_ID_;
+	target_ = target;
 }

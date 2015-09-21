@@ -21,11 +21,11 @@ protected:
 
 public:
 	FiniteStateMachine();
-	FiniteStateMachine( State* state );
+	FiniteStateMachine( State* const state );
 	~FiniteStateMachine();
 
 	void changeState();
-	void changeState( State* state );
+	void forceState( State* const state );
 	char const* getStateName();
 
 };
