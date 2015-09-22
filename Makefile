@@ -1,5 +1,3 @@
-# compiler
-CC = g++
 # compiler flags
 CFLAGS = -std=c++11 -Wall
 
@@ -40,9 +38,10 @@ ERRORS_FILE = errors.txt
 .PHONY: clean
 
 #Compile(output into error.txt if there is an error), link, then run
+# CXX defined in .travis.yml and build.sh
 linux:
-	$(CC) $(CFLAGS) -c $(FILES) 
-	$(CC) $(CFLAGS) $(OBJS) -o $(BDIR)/$(LINUX_BIN) $(LINKER_FLAGS)
+	$(CXX) $(CFLAGS) -c $(FILES) 
+	$(CXX) $(CFLAGS) $(OBJS) -o $(BDIR)/$(LINUX_BIN) $(LINKER_FLAGS)
 
 clean:
 	$(RM) -r *.o *~ *.gch *.out
