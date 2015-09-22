@@ -13,7 +13,7 @@ BDIR = ./bin
 SRC = main.cpp 
 
 # all .h files without directory
-_DEPH = Debug.h Engine.h State.h EngineStates.h FiniteStateMachine.h EngineStateMachine.h Mob.h GLFWFuncs.h Point.h
+_DEPH = Debug.h Engine.h State.h EngineStates.h FiniteStateMachine.h EngineStateMachine.h Mob.h GLFWFuncs.h Coord.h
 # all .cpp files without directory
 _DEPSRC = $(_DEPH:.h=.cpp)
 
