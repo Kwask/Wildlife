@@ -15,8 +15,7 @@ before_install:
 
 install:
   - sudo apt-get update -qq
-  - sudo apt-get install build-essential xorg-dev libglu1-mesa-dev -qq
-  - sudo apt-get install libglew-dev libsdl2-dev libsdl2-image-dev libglm-dev libfreetype6-dev -qq
+  - sudo apt-get install build-essential xorg-dev libglu1-mesa-dev libglew-dev libglm-dev -qq
   - sudo apt-get install cmake -qq
 
   # g++4.9
