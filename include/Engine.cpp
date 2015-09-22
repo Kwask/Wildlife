@@ -13,12 +13,14 @@ Engine::Engine()
 	debugging( "ENGINE STARTING..." );
 	state_.forceState( &EngineStateMachine::start );
 	debugging( "ENGINE STARTED." );
-	debugging( "ENGINE STATE: " + std::string( state_.getStateName() ) );
+	debugging( "ENGINE STATE: " + std::string( state_.getStateName() ));
+
+	handle();
 }
 
 Engine::~Engine()
 {
-	delete instance_;
+	instance_ = nullptr;
 }
 
 Engine* Engine::getInstance()
@@ -31,7 +33,26 @@ Engine* Engine::getInstance()
 	return instance_;
 }
 
+void Engine::resetInstance()
+{
+	delete instance_;
+	instance_ = nullptr;
+}
+
 void Engine::handle()
 {
-	state_.changeState();
+	while( !shouldStop() )
+	{
+		state_.changeState();
+	}
+}
+
+bool Engine::shouldStop()
+{
+	if( state_.currentState() == nullptr )
+	{
+		return true;
+	}
+
+	return false;
 }

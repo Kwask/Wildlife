@@ -1,6 +1,7 @@
 #ifndef ENGINESTATES_H
 #define ENGINESTATES_H
 
+#include <GLFW/glfw3.h>
 #include "State.h"
 #include "Debug.h"
 
@@ -61,6 +62,11 @@ protected:
 	char const* name = "EngineRender";
 
 public:
+	int window_width = 800;
+	int window_height = 600;
+
+	GLFWwindow *window = nullptr;
+
 	~EngineRender();
 
 	void cleanup();

@@ -26,6 +26,9 @@ public:
 
 	void changeState();
 	void forceState( State* const state );
+
+	State* const currentState();
+	
 	char const* getStateName();
 
 };

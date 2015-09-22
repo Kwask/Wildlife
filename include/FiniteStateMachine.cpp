@@ -28,7 +28,7 @@ void FiniteStateMachine::cleanup()
 
 void FiniteStateMachine::changeState()
 {
-	if( state_ ) // problem point
+	if( state_ )
 	{
 		state_ = state_->handle();
 	}
@@ -38,6 +38,11 @@ void FiniteStateMachine::forceState( State* const state )
 {
 	cleanup();
 	state_ = state;
+}
+
+State* const FiniteStateMachine::currentState()
+{
+	return state_;
 }
 
 char const* FiniteStateMachine::getStateName()
