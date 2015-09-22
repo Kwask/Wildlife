@@ -11,7 +11,7 @@ before_install:
   # clang 3.4
   - if [ "$CXX" == "clang++" ]; then sudo add-apt-repository -y ppa:h-rayflood/llvm; fi
 
-  - wget https://github.com/glfw/glfw/releases/download/3.1.1/glfw-3.1.1.zip -o glfw.zip
+  - wget https://github.com/glfw/glfw/releases/download/3.1.1/glfw-3.1.1.zip
 
 install:
   - sudo apt-get update -qq
@@ -26,8 +26,8 @@ install:
   - if [ "$CXX" == "clang++" ]; then sudo apt-get install --allow-unauthenticated -qq clang-3.4; fi
   - if [ "$CXX" == "clang++" ]; then export CXX="clang++-3.4"; fi
 
-  - unzip glfw.zip
-  - cd glfw
+  - unzip glfw-3.1.1.zip
+  - cd glfw-3.1.1/
   - sudo cmake -G "Unix Makefiles"
   - sudo make
   - sudo make install
