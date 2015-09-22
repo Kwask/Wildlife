@@ -13,7 +13,7 @@ public:
 
 	virtual State* handle() = 0; // Handles all actions of the current state and transition to the next state
 	
-	char const* toString();
+	virtual char const* getName();
 };
 
 #endif

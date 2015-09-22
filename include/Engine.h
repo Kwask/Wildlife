@@ -15,10 +15,13 @@ private:
 
 public:
 	static Engine* getInstance();
+	static void resetInstance();
 
 	virtual ~Engine();
 
 	void handle();
+
+	bool shouldStop();
 };
 
 #endif
