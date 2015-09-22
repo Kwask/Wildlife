@@ -1,13 +1,13 @@
-#include "Point.h"
+#include "Coord.h"
 
 template <typename T>
-Point<T>::Point()
+Coord<T>::Coord()
 {
 
 }
 
 template <typename T>
-Point<T>::~Point()
+Coord<T>::~Coord()
 {
 
 }
