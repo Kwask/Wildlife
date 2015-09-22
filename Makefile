@@ -35,12 +35,13 @@ LINKER_FLAGS = -lGLEW -lglfw3 -lGL -lX11 -lXi -lXrandr -lXxf86vm -lXinerama -lXc
 
 # the output file
 LINUX_BIN = wildlife.out
+ERRORS_FILE = errors.txt
 
 .PHONY: clean
 
 #Compile(output into error.txt if there is an error), link, then run
 linux:
-	$(CC) $(CFLAGS) -c $(FILES) 2>$(DDIR)/errors.txt
+	$(CC) $(CFLAGS) -c $(FILES) 
 	$(CC) $(CFLAGS) $(OBJS) -o $(BDIR)/$(LINUX_BIN) $(LINKER_FLAGS)
 
 clean:
