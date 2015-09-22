@@ -13,8 +13,10 @@ before_install:
 
   - wget https://github.com/glfw/glfw/releases/download/3.1.1/glfw-3.1.1.zip
 
-install:
+  - yes | sudo add-apt-repository ppa:kalakris/cmake
   - sudo apt-get update -qq
+
+install:
   - sudo apt-get install build-essential xorg-dev libglu1-mesa-dev libglew-dev libglm-dev -qq
   - sudo apt-get install cmake -qq
 
@@ -26,6 +28,10 @@ install:
   - if [ "$CXX" == "clang++" ]; then sudo apt-get install --allow-unauthenticated -qq clang-3.4; fi
   - if [ "$CXX" == "clang++" ]; then export CXX="clang++-3.4"; fi
 
+  # cmake 3.3.2
+  - 
+
+  # glfw 3.1.1
   - unzip glfw-3.1.1.zip
   - cd glfw-3.1.1/
   - sudo cmake -G "Unix Makefiles"
