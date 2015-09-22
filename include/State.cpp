@@ -5,7 +5,7 @@ State::~State()
 	
 }
 
-char const* State::toString()
+char const* State::getName()
 {
 	return name;
 }

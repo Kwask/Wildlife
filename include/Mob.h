@@ -7,12 +7,10 @@ class Mob
 {
 private:
 	static unsigned int mob_count_;
-	static unsigned int mob_ID_next_;
 
 	FiniteStateMachine mind_;
 
-	unsigned int mob_ID_;
-	unsigned int target_ID_;
+	Mob* target_;
 
 	int x_pos_;
 	int y_pos_;
@@ -29,12 +27,13 @@ public:
 	int xPos();
 	int yPos();
 	int mobCount();
-	int mobID();
-	int targetID();
+	
+	Mob* getMob();
+	Mob* target();
 
-	void xPos( const int x_pos_ );
-	void yPos( const int y_pos_ );
-	void targetID( const int target_ID_ );
+	void xPos( int const x_pos );
+	void yPos( int const y_pos );
+	void target( Mob* const target );
 	void process();
 };
 

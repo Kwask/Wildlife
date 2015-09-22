@@ -1,6 +1,7 @@
 #ifndef ENGINESTATES_H
 #define ENGINESTATES_H
 
+#include <GLFW/glfw3.h>
 #include "State.h"
 #include "Debug.h"
 
@@ -13,9 +14,11 @@ protected:
 public:
 	~EngineStart();
 
-	virtual void cleanup();
+	void cleanup();
 
-	virtual State* handle();
+	State* handle();
+
+	char const* getName();
 };
 
 // Starts the process series of events
@@ -29,9 +32,11 @@ protected:
 public:
 	~EngineProcess();
 
-	virtual void cleanup();
+	void cleanup();
 
-	virtual State* handle();
+	State* handle();
+
+	char const* getName();
 };
 
 // Starts the process series
@@ -43,9 +48,11 @@ protected:
 public:
 	~EnginePoll();
 
-	virtual void cleanup();
+	void cleanup();
 
-	virtual State* handle();
+	State* handle();
+
+	char const* getName();
 };
 
 // Processes events
@@ -55,11 +62,18 @@ protected:
 	char const* name = "EngineRender";
 
 public:
+	int window_width = 800;
+	int window_height = 600;
+
+	GLFWwindow *window = nullptr;
+
 	~EngineRender();
 
-	virtual void cleanup();
+	void cleanup();
 
-	virtual State* handle();
+	State* handle();
+
+	char const* getName();
 };
 
 // Stops the engine
@@ -71,9 +85,11 @@ protected:
 public:
 	~EngineStop();
 
-	virtual void cleanup();
+	void cleanup();
 
-	virtual State* handle();
+	State* handle();
+
+	char const* getName();
 };
 
 #endif

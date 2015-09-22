@@ -44,7 +44,11 @@ float getinclin( float refx, float refy, float posx, float posy )
     int delx = posx-refx, dely = posy-refy;
     float ret = 0.0f;
 
+<<<<<<< HEAD:test/main.cpp
     if( delx==0 )
+=======
+    if( delx == 0 )
+>>>>>>> 1f8182218d7b29106bdea057ca181a8a239a7935:test/rotation/main.cpp
     {
         if( dely < 0.0f )
         {
@@ -60,7 +64,11 @@ float getinclin( float refx, float refy, float posx, float posy )
        	}
     }
 
+<<<<<<< HEAD:test/main.cpp
     if( dely==0 )
+=======
+    if( dely == 0 )
+>>>>>>> 1f8182218d7b29106bdea057ca181a8a239a7935:test/rotation/main.cpp
     {
 
         if( delx < 0.0f )
@@ -87,7 +95,7 @@ float getinclin( float refx, float refy, float posx, float posy )
 
     if( delx < 0 )
     {
-		ret = ret+90;
+		ret = ret+180;
     }
 
     return ret*0.0174532925;
@@ -173,6 +181,7 @@ void Square::rotate( float ang )
 void Square::draw()
 {
 
+	//Run the rotation function for each corner of the square.
 	coord a = rotateVector( makecoord( verts[0].x, verts[0].y ), this->ang );
 	coord b = rotateVector( makecoord( verts[1].x, verts[1].y ), this->ang );
 	coord c = rotateVector( makecoord( verts[2].x, verts[2].y ), this->ang );
@@ -198,9 +207,11 @@ void Square::draw()
 int main( int argc, char **argv )
 {
 
+	//Declare the height and width of the window.
 	static int WINDOW_WIDTH = 800;
 	static int WINDOW_HEIGHT = 600;
 
+	//Do all initialization.
 	glfwInit();
 	GLFWwindow *window = glfwCreateWindow( WINDOW_WIDTH, WINDOW_HEIGHT, "Hello", nullptr, nullptr );
 	glfwMakeContextCurrent( window );
@@ -209,19 +220,32 @@ int main( int argc, char **argv )
 
 	glfwSwapInterval( 1 );
 
-	Square test( 100, 100 );
+	//Creating the square.
+	Square test( 300, 300 );
 
 	while( !glfwWindowShouldClose( window ) )
 	{
 
+		//Clearing the color buffer bit.
 		glClear( GL_COLOR_BUFFER_BIT );
 		glLoadIdentity();
 
+		//Pushing all the objects back a z level so they don't hit the clippig pane.
 		glTranslatef( 0.0f, 0.0f, -1.0f );
 		test.rotate( i );
 		test.draw();
 
+<<<<<<< HEAD:test/main.cpp
 		//i+=0.01f;
+=======
+		i+=0.01f;
+		if( i >= pi*2 )
+		{
+
+			i = 0.0f;
+
+		}
+>>>>>>> 1f8182218d7b29106bdea057ca181a8a239a7935:test/rotation/main.cpp
 
 		glfwPollEvents();
 		glfwSwapBuffers( window );
