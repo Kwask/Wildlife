@@ -61,7 +61,7 @@ travis:
 	@echo "--------------------"
 	@echo "Environment: `uname -a`"
 	@echo "Compiler: `$(CXX) --version`"
-	@echo "--------------------""
+	@echo "--------------------"
 	@$(CXX) $(CFLAGS) -c $(FILES) 
 	@echo "Object compilation complete"
 	@$(CXX) $(CFLAGS) $(OBJS) -o $(BDIR)/$(LINUX_BIN) $(LINKER_FLAGS)
