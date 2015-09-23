@@ -25,7 +25,7 @@ void Draw()
 	for( int i = 1; i < 100; i++ )
 	{
 
-		glVertex2f( i*8, (a->getVal( i/10.0f, 1 )*100)+100 );
+		glVertex2f( i*8, (a->getVal( i/10.0f, 1 ))+100 );
 
 	}
 	glEnd();
