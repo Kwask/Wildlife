@@ -35,4 +35,4 @@ install:
 script: 
   - $CXX --version
   - make clean
-  - make
+  - make travis
