@@ -1,5 +1,3 @@
-# compiler
-CC = g++
 # compiler flags
 CFLAGS = -std=c++11 -Wall
 
@@ -35,13 +33,15 @@ LINKER_FLAGS = -lGLEW -lglfw3 -lGL -lX11 -lXi -lXrandr -lXxf86vm -lXinerama -lXc
 
 # the output file
 LINUX_BIN = wildlife.out
+ERRORS_FILE = errors.txt
 
 .PHONY: clean
 
 #Compile(output into error.txt if there is an error), link, then run
+# CXX defined in .travis.yml and build.sh
 linux:
-	$(CC) $(CFLAGS) -c $(FILES) 2>$(DDIR)/errors.txt
-	$(CC) $(CFLAGS) $(OBJS) -o $(BDIR)/$(LINUX_BIN) $(LINKER_FLAGS)
+	$(CXX) $(CFLAGS) -c $(FILES) 
+	$(CXX) $(CFLAGS) $(OBJS) -o $(BDIR)/$(LINUX_BIN) $(LINKER_FLAGS)
 
 clean:
 	$(RM) -r *.o *~ *.gch *.out
