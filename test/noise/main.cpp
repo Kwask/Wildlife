@@ -22,10 +22,10 @@ void Draw()
 {
 
 	glBegin( GL_LINE_STRIP );
-	for( int i = 1; i < 100; i++ )
+	for( int i = 1; i < 8000; i++ )
 	{
 
-		glVertex2f( i*8, (a->getVal( i/10.0f, 1 )*100)+100 );
+		glVertex2f( i*(WINDOW_WIDTH/8000.0f), (a->getVal( i/10.0f, 1 ))+100 );
 
 	}
 	glEnd();
@@ -41,7 +41,7 @@ int main()
 	Reshape( window, WINDOW_WIDTH, WINDOW_HEIGHT );
 
 	srand(time(nullptr));
-	a = new Noise( 1, 1 );
+	a = new Noise( 100, 8000 );
 
 	while( !glfwWindowShouldClose( window ) )
 	{

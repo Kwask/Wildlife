@@ -21,7 +21,7 @@ class Noise
 
 		std::vector<float> temp;
 
-		float vals[10];
+		float *vals;
 		float genNum();
 		float cosineInterpolate( float y1, float y2, float loc );
 
@@ -46,15 +46,15 @@ float Noise::cosineInterpolate( float y1, float y2, float loc )
 Noise::Noise( float amp, float freq )
 {
 
-	const int maxval = 10;
-
 	this->amp = amp;
 	this->freq = freq;
 
-	for( int i = 0; i < maxval; i++ )
+	vals = new float[(int)freq];
+
+	for( int i = 0; i < freq; i++ )
 	{
 
-		vals[i] = genNum();
+		vals[i] = genNum()*amp;
 
 	}
 
@@ -62,6 +62,14 @@ Noise::Noise( float amp, float freq )
 
 float Noise::getVal( float x, float y )
 {
+
+	if( x > freq )
+	{
+
+		std::cout << "Val is larger than frequency..." << std::endl;
+		x = amp;
+
+	}
 
 	return cosineInterpolate( vals[(int)floor(x)], vals[(int)ceil(x)], x-floor(x) );
 
