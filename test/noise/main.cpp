@@ -18,17 +18,39 @@ void Reshape( GLFWwindow *wind, float width, float height )
 
 }
 
+void DrawSquare( float x, float y )
+{
+
+	float siz = 1;
+
+	float getcol = 1-(a->getVal( x, y )+1)/2.0f;
+
+	glColor3f( getcol, getcol, getcol );
+	
+	glBegin( GL_TRIANGLE_FAN );
+		glVertex2f( x+(siz*x), y+(siz*y) );
+		glVertex2f( x+(siz*x)+siz, y+(siz*y) );
+		glVertex2f( x+(siz*x)+siz, y+(siz*y)+siz );
+		glVertex2f( x+(siz*x), y+(siz*y)+siz );
+	glEnd();
+
+
+}
+
 void Draw()
 {
 
-	glBegin( GL_LINE_STRIP );
-	for( int i = 1; i < 8000; i++ )
+	for( int y = 0; y < 600; y++ )
 	{
 
-		glVertex2f( i*(WINDOW_WIDTH/8000.0f), (a->getVal( i/10.0f, 1 ))+100 );
+		for( int x = 0; x < 800; x++ )
+		{
+
+			DrawSquare( x, y );
+
+		}
 
 	}
-	glEnd();
 }
 
 int main()
@@ -41,7 +63,7 @@ int main()
 	Reshape( window, WINDOW_WIDTH, WINDOW_HEIGHT );
 
 	srand(time(nullptr));
-	a = new Noise( 100, 8000 );
+	a = new Noise( 20 );
 
 	while( !glfwWindowShouldClose( window ) )
 	{

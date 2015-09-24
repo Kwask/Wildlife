@@ -44,7 +44,11 @@ float getinclin( float refx, float refy, float posx, float posy )
     int delx = posx-refx, dely = posy-refy;
     float ret = 0.0f;
 
+<<<<<<< HEAD:test/main.cpp
+    if( delx==0 )
+=======
     if( delx == 0 )
+>>>>>>> 1f8182218d7b29106bdea057ca181a8a239a7935:test/rotation/main.cpp
     {
         if( dely < 0.0f )
         {
@@ -60,7 +64,11 @@ float getinclin( float refx, float refy, float posx, float posy )
        	}
     }
 
+<<<<<<< HEAD:test/main.cpp
+    if( dely==0 )
+=======
     if( dely == 0 )
+>>>>>>> 1f8182218d7b29106bdea057ca181a8a239a7935:test/rotation/main.cpp
     {
 
         if( delx < 0.0f )
@@ -156,10 +164,10 @@ Square::Square( float x, float y )
 
 	}
 
-	verts[0] = makecoord( -w/2.0f, -h/2.0f );
-	verts[1] = makecoord( w/2.0f, -h/2.0f );
-	verts[2] = makecoord( w/2.0f, h/2.0f );
-	verts[3] = makecoord( -w/2.0f, h/2.0f );
+	verts[0] = makecoord( -w, -h );
+	verts[1] = makecoord( w, -h );
+	verts[2] = makecoord( w, h );
+	verts[3] = makecoord( -w, h );
 
 }
 
@@ -227,6 +235,9 @@ int main( int argc, char **argv )
 		test.rotate( i );
 		test.draw();
 
+<<<<<<< HEAD:test/main.cpp
+		//i+=0.01f;
+=======
 		i+=0.01f;
 		if( i >= pi*2 )
 		{
@@ -234,6 +245,7 @@ int main( int argc, char **argv )
 			i = 0.0f;
 
 		}
+>>>>>>> 1f8182218d7b29106bdea057ca181a8a239a7935:test/rotation/main.cpp
 
 		glfwPollEvents();
 		glfwSwapBuffers( window );
