@@ -1,11 +1,10 @@
 #include <iostream>
 #include <GL/glfw3.h>
 
-#include "perlinnoise.h"
+#include "locs.h"
 
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
-Noise *a;
 
 void Reshape( GLFWwindow *wind, float width, float height )
 {
@@ -18,52 +17,63 @@ void Reshape( GLFWwindow *wind, float width, float height )
 
 }
 
-void DrawSquare( float x, float y )
+void DrawSquare( float x, float y, float w )
 {
 
-	float siz = 1;
-
-	float getcol = 1-(a->getVal( x, y )+1)/2.0f;
-
-	glColor3f( getcol, getcol, getcol );
-	
 	glBegin( GL_TRIANGLE_FAN );
-		glVertex2f( x+(siz*x), y+(siz*y) );
-		glVertex2f( x+(siz*x)+siz, y+(siz*y) );
-		glVertex2f( x+(siz*x)+siz, y+(siz*y)+siz );
-		glVertex2f( x+(siz*x), y+(siz*y)+siz );
+		glVertex2f( x, y );
+		glVertex2f( x+w, y );
+		glVertex2f( x+w, y+w );
+		glVertex2f( x, y+w );
 	glEnd();
-
 
 }
 
-void Draw()
+void Draw( Map dat )
 {
 
-	for( int y = 0; y < 600; y++ )
+	for( int i = 0; i < dat.GetSize(); i++ )
 	{
+		
+		Coord<float> pos = dat.GetElement( i ).GetPos();
 
-		for( int x = 0; x < 800; x++ )
+		if( dat.GetElement( i ).GetType() == Obstac::TREE )
 		{
 
-			DrawSquare( x, y );
+			glColor3f( 0.2f, 0.9f, 0.2f );
+			DrawSquare( pos.x, pos.y, 10 );
+
+		}else if( dat.GetElement( i ).GetType() == Obstac::BUSH )
+		{
+
+			glColor3f( 0.4f, 0.8f, 0.4f );
+			DrawSquare( pos.x, pos.y, 5 );
+
+		}else if( dat.GetElement( i ).GetType() == Obstac::ROCK )
+		{
+
+			glColor3f( 0.4f, 0.4f, 0.4f );
+			DrawSquare( pos.x, pos.y, 3 );
 
 		}
 
 	}
+
 }
 
 int main()
 {
 
 	glfwInit();
-	GLFWwindow *window = glfwCreateWindow( WINDOW_WIDTH, WINDOW_HEIGHT, "Perlin Noise", NULL, NULL );
+	GLFWwindow *window = glfwCreateWindow( WINDOW_WIDTH, WINDOW_HEIGHT, "Generation", NULL, NULL );
 	glfwMakeContextCurrent( window );
 
 	Reshape( window, WINDOW_WIDTH, WINDOW_HEIGHT );
 
 	srand(time(nullptr));
-	a = new Noise( 20 );
+
+	glClearColor( 0.1f, 0.6f, 0.1f, 1.0f );
+	Map gameMap( 800, 600 );
 
 	while( !glfwWindowShouldClose( window ) )
 	{
@@ -72,7 +82,7 @@ int main()
 		glLoadIdentity();
 		glTranslatef( 0.0f, 0.0f, -1.0f );
 
-		Draw();
+		Draw( gameMap );
 
 		glfwSwapBuffers( window );
 		glfwPollEvents();
