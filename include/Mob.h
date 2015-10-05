@@ -7,8 +7,6 @@
 class Mob
 {
 private:
-	static std::vector<Mob*> container_;
-
 	FiniteStateMachine mind_;
 
 	Mob* target_;
@@ -22,12 +20,16 @@ private:
 	void initiliaze();
 
 public:
+	static std::vector<Mob*> container;
+
 	Mob();
 	~Mob();
 
 	static void deleteAll();
 
 	static int mobCount();
+
+	static float getVertices();
 
 	int xPos();
 	int yPos();

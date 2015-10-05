@@ -1,6 +1,7 @@
 #ifndef ENGINESTATES_H
 #define ENGINESTATES_H
 
+#include <vector>
 #include <GLFW/glfw3.h>
 #include "State.h"
 #include "Debug.h"
@@ -60,6 +61,7 @@ class EngineRender : public State
 {
 protected:
 	char const* name = "EngineRender";
+	std::vector<float> vertices;
 
 public:
 	int window_width = 800;
@@ -70,6 +72,7 @@ public:
 	~EngineRender();
 
 	void cleanup();
+	void populateVerticeVector();
 
 	State* handle();
 
