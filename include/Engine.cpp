@@ -13,7 +13,6 @@ Engine::Engine()
 	debugging( "ENGINE STARTING..." );
 	state_.forceState( &EngineStateMachine::start );
 	debugging( "ENGINE STARTED." );
-	debugging( "ENGINE STATE: " + std::string( state_.getStateName() ));
 }
 
 Engine::~Engine()

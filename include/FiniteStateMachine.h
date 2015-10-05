@@ -4,12 +4,10 @@
 #include "State.h"
 
 /*
-	This is a finite state machine that utilizes a stack of function
-	pointers to switch between states. To switch between states, use 
-	the pushState and popState.
-
-	Each mob has a FSM as a "mind" and so to use it, you need to define 
-	the mob's different behaviors as void funcs.
+	This is a finite state machine, which uses various instances
+	of State. Each State is responsible for transitioning into
+	the next appropriate state, as well as any processing the state
+	should do.
 */
 
 class FiniteStateMachine
@@ -21,16 +19,15 @@ protected:
 
 public:
 	FiniteStateMachine();
-	FiniteStateMachine( State* const state );
+	FiniteStateMachine( State* const state ); // To force a state on initialization
 	~FiniteStateMachine();
 
-	void changeState();
-	void forceState( State* const state );
+	void changeState(); // Just call this to process the current state
+	void forceState( State* const state ); // Call this to force the state machine to assume the given state
 
-	State* const currentState();
+	State* const currentState(); // Returns the current state
 	
-	char const* getStateName();
-
+	char const* getStateName(); // Returns the name of the current state
 };
 
 #endif

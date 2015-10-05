@@ -24,6 +24,7 @@ State* EngineStart::handle()
 
 	glfwSwapInterval( 1 );
 
+	// Just creates 100 mobs, all stored in Mob::container_
 	for( int i = 0; i < 100; i++ )
 	{
 		new Mob;
@@ -61,6 +62,7 @@ State* EnginePoll::handle()
 {
 	glfwPollEvents();
 
+	// If the window exit button was pressed, tansition to stop
 	if( glfwWindowShouldClose( EngineStateMachine::render.window ))
 	{
 		debugging("WINDOW CLOSING.");
@@ -82,7 +84,6 @@ void EngineRender::cleanup() {}
 
 State* EngineRender::handle()
 {
-
 	glfwSwapBuffers( window );
 
 	return &EngineStateMachine::process;
@@ -102,11 +103,10 @@ State* EngineStop::handle()
 {
 	debugging("ENGINE STOPPING...");
 
-	for( int i = 0; i < Mob::mobCount(); i++ )
-	{
-		Mob::deleteAll();
-	}
+	// Deletes all instances of Mob that were created
+	Mob::deleteAll();
 
+	// If there's a window, destroy it and terminate GLFW
 	if( EngineStateMachine::render.window )
 	{
 		glfwDestroyWindow( EngineStateMachine::render.window );

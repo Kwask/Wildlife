@@ -10,22 +10,19 @@ Mob::Mob()
 {
 	initiliaze();
 
-	std::string out = "Mob ";
-	out += std::string( std::to_string( mobCount() ));
-	out += std::string( " created" );
-
-	debugging( out );
-
+	// Adds this object to the global mob list
 	container_.push_back( this );
 }
 
 Mob::~Mob()
 {
+	// Uses the erase-remove idiom to remove this object from the static vector
 	container_.erase( std::remove( container_.begin(), container_.end(), this ), container_.end() );
 }
 
 void Mob::deleteAll()
 {
+	// Deletes all instances of mobs
 	for( unsigned int i = 0; i < container_.size(); i++ )
 	{
 		delete container_[i];		
