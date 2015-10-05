@@ -3,6 +3,8 @@
 
 #include "locs.h"
 
+#include <fstream>
+
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
@@ -74,6 +76,48 @@ int main()
 
 	glClearColor( 0.1f, 0.6f, 0.1f, 1.0f );
 	Map gameMap( 800, 600 );
+
+	std::ofstream output;
+	output.open( "map.txt" );
+
+	output << "TREE:\n";
+	for( int i = 0; i < gameMap.GetSize(); i++ )
+	{
+
+		if( gameMap.GetElement(i).GetType() == Obstac::TREE )
+		{
+
+			output << gameMap.GetElement(i).GetPos().x << "," << gameMap.GetElement(i).GetPos().y << "\n";
+
+		}
+
+	}
+
+	output << "ROCK:\n";
+	for( int i = 0; i < gameMap.GetSize(); i++ )
+	{
+
+		if( gameMap.GetElement(i).GetType() == Obstac::ROCK )
+		{
+
+			output << gameMap.GetElement(i).GetPos().x << "," << gameMap.GetElement(i).GetPos().y << "\n";
+
+		}
+
+	}
+
+	output << "BUSH:\n";
+	for( int i = 0; i < gameMap.GetSize(); i++ )
+	{
+
+		if( gameMap.GetElement(i).GetType() == Obstac::BUSH )
+		{
+
+			output << gameMap.GetElement(i).GetPos().x << "," << gameMap.GetElement(i).GetPos().y << "\n";
+
+		}
+
+	}
 
 	while( !glfwWindowShouldClose( window ) )
 	{
