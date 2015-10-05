@@ -3,6 +3,7 @@
 #include "EngineStates.h"
 #include "EngineStateMachine.h"
 #include "GLFWFuncs.h"
+#include "Mob.h"
 
 // EngineStart
 EngineStart::~EngineStart() {}
@@ -22,6 +23,11 @@ State* EngineStart::handle()
 	GLFWResize( EngineStateMachine::render.window, EngineStateMachine::render.window_width, EngineStateMachine::render.window_height );
 
 	glfwSwapInterval( 1 );
+
+	for( int i = 0; i < 100; i++ )
+	{
+		new Mob;
+	}
 
 	return &EngineStateMachine::process;
 }
@@ -76,8 +82,6 @@ void EngineRender::cleanup() {}
 
 State* EngineRender::handle()
 {
-	glClear( GL_COLOR_BUFFER_BIT );
-	glLoadIdentity();
 
 	glfwSwapBuffers( window );
 
@@ -97,6 +101,11 @@ void EngineStop::cleanup() {}
 State* EngineStop::handle()
 {
 	debugging("ENGINE STOPPING...");
+
+	for( int i = 0; i < Mob::mobCount(); i++ )
+	{
+		Mob::deleteAll();
+	}
 
 	if( EngineStateMachine::render.window )
 	{

@@ -1,17 +1,40 @@
+#include <vector>
+#include <algorithm>
+#include <string>
 #include "Mob.h"
+#include "Debug.h"
 
-unsigned int Mob::mob_count_ = 0;
+std::vector<Mob*> Mob::container_;
 
 Mob::Mob()
 {
 	initiliaze();
 
-	mob_count_++;
+	std::string out = "Mob ";
+	out += std::string( std::to_string( mobCount() ));
+	out += std::string( " created" );
+
+	debugging( out );
+
+	container_.push_back( this );
 }
 
 Mob::~Mob()
 {
-	mob_count_--;
+	container_.erase( std::remove( container_.begin(), container_.end(), this ), container_.end() );
+}
+
+void Mob::deleteAll()
+{
+	for( unsigned int i = 0; i < container_.size(); i++ )
+	{
+		delete container_[i];		
+	}
+}
+
+int Mob::mobCount()
+{
+	return container_.size();
 }
 
 int Mob::xPos()
@@ -22,11 +45,6 @@ int Mob::xPos()
 int Mob::yPos()
 {
 	return y_pos_;
-}
-
-int Mob::mobCount()
-{
-	return mob_count_;
 }
 
 Mob* Mob::getMob()
