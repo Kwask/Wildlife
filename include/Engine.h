@@ -16,6 +16,7 @@ private:
 public:
 	static Engine* getInstance();
 	static void resetInstance();
+	static unsigned int getRand( unsigned int mod = 0 );
 
 	virtual ~Engine();
 

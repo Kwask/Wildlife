@@ -1,17 +1,39 @@
+#include <vector>
+#include <algorithm>
+#include <string>
+#include "Engine.h"
 #include "Mob.h"
+#include "Debug.h"
+#include "EngineStateMachine.h"
 
-unsigned int Mob::mob_count_ = 0;
+std::vector<Mob*> Mob::container;
 
 Mob::Mob()
 {
 	initiliaze();
 
-	mob_count_++;
+	// Adds this object to the global mob list
+	container.push_back( this );
 }
 
 Mob::~Mob()
 {
-	mob_count_--;
+	// Uses the erase-remove idiom to remove this object from the static vector
+	container.erase( std::remove( container.begin(), container.end(), this ), container.end() );
+}
+
+void Mob::deleteAll()
+{
+	// Deletes all instances of mobs
+	for( unsigned int i = 0; i < container.size(); i++ )
+	{
+		delete container[i];		
+	}
+}
+
+int Mob::mobCount()
+{
+	return container.size();
 }
 
 int Mob::xPos()
@@ -22,11 +44,6 @@ int Mob::xPos()
 int Mob::yPos()
 {
 	return y_pos_;
-}
-
-int Mob::mobCount()
-{
-	return mob_count_;
 }
 
 Mob* Mob::getMob()
@@ -43,8 +60,8 @@ void Mob::initiliaze()
 {
 	target_ = nullptr;
 	
-	x_pos_ = 0;
-	y_pos_ = 0;
+	x_pos_ = Engine::getRand( EngineStateMachine::render.window_width );
+	y_pos_ = Engine::getRand( EngineStateMachine::render.window_height );
 
 	x_vel_ = 0;
 	y_vel_ = 0;

@@ -3,6 +3,7 @@
 #include "EngineStates.h"
 #include "EngineStateMachine.h"
 #include "GLFWFuncs.h"
+#include "Mob.h"
 
 // EngineStart
 EngineStart::~EngineStart() {}
@@ -22,6 +23,12 @@ State* EngineStart::handle()
 	GLFWResize( EngineStateMachine::render.window, EngineStateMachine::render.window_width, EngineStateMachine::render.window_height );
 
 	glfwSwapInterval( 1 );
+
+	// Just creates 100 mobs, all stored in Mob::container_
+	for( int i = 0; i < 100; i++ )
+	{
+		new Mob;
+	}
 
 	return &EngineStateMachine::process;
 }
@@ -55,6 +62,7 @@ State* EnginePoll::handle()
 {
 	glfwPollEvents();
 
+	// If the window exit button was pressed, tansition to stop
 	if( glfwWindowShouldClose( EngineStateMachine::render.window ))
 	{
 		debugging("WINDOW CLOSING.");
@@ -74,11 +82,55 @@ EngineRender::~EngineRender() {}
 
 void EngineRender::cleanup() {}
 
+void EngineRender::populateVerticeVector()
+{
+	vertices.clear();
+
+	// This generates 6 vertices to create 2 triangles for each mob
+	// THIS IS NOT FINAL
+	for( unsigned int i = 0; i < Mob::container.size(); i++ )
+	{
+		int size = 10;
+		vertices.push_back( Mob::container[i]->xPos() );
+		vertices.push_back( Mob::container[i]->yPos() );
+
+		vertices.push_back( Mob::container[i]->xPos()+size );
+		vertices.push_back( Mob::container[i]->yPos() );
+		
+		vertices.push_back( Mob::container[i]->xPos() );
+		vertices.push_back( Mob::container[i]->yPos()+size );
+
+		vertices.push_back( Mob::container[i]->xPos() );
+		vertices.push_back( Mob::container[i]->yPos()+size );
+
+		vertices.push_back( Mob::container[i]->xPos()+size );
+		vertices.push_back( Mob::container[i]->yPos()+size );
+		
+		vertices.push_back( Mob::container[i]->xPos()+size );
+		vertices.push_back( Mob::container[i]->yPos() );
+	}
+}
+
 State* EngineRender::handle()
 {
-	glClear( GL_COLOR_BUFFER_BIT );
-	glLoadIdentity();
+	int dimensions = 2; // how many dimensions are we working in?
 
+	// Populates the vector of vertices to be drawn
+	populateVerticeVector();
+
+	// Moves everything backward by -1 opengl unit
+	glTranslatef( 0.f, 0.f, -1.f );
+
+	glEnableClientState( GL_VERTEX_ARRAY );
+
+	// Specifies the vertice data
+	glVertexPointer( dimensions, GL_FLOAT, 0, vertices.data() );
+	// Draws the given vertice data
+	glDrawArrays( GL_TRIANGLES, 0, vertices.size()/dimensions );
+
+	glDisableClientState( GL_VERTEX_ARRAY );
+
+	// Displays what was just drawn to the screen
 	glfwSwapBuffers( window );
 
 	return &EngineStateMachine::process;
@@ -98,6 +150,10 @@ State* EngineStop::handle()
 {
 	debugging("ENGINE STOPPING...");
 
+	// Deletes all instances of Mob that were created
+	Mob::deleteAll();
+
+	// If there's a window, destroy it and terminate GLFW
 	if( EngineStateMachine::render.window )
 	{
 		glfwDestroyWindow( EngineStateMachine::render.window );

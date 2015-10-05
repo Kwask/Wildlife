@@ -1,13 +1,12 @@
 #ifndef MOB_H
 #define MOB_H
 
+#include <vector>
 #include "FiniteStateMachine.h"
 
 class Mob
 {
 private:
-	static unsigned int mob_count_;
-
 	FiniteStateMachine mind_;
 
 	Mob* target_;
@@ -21,12 +20,19 @@ private:
 	void initiliaze();
 
 public:
+	static std::vector<Mob*> container;
+
 	Mob();
 	~Mob();
 
+	static void deleteAll();
+
+	static int mobCount();
+
+	static float getVertices();
+
 	int xPos();
 	int yPos();
-	int mobCount();
 	
 	Mob* getMob();
 	Mob* target();
