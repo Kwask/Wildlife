@@ -1,14 +1,20 @@
 #ifndef COORD_H
 #define COORD_H
 
-template <typename T>
 struct Coord
 {
 	Coord();
+	Coord( float const xPos, float const yPos );
 	~Coord();
 
-	T xPos;
-	T yPos;
+	float xPos;
+	float yPos;
+
+	bool operator==( Coord const b ) const;
+
+	Coord operator+( Coord const b ) const;
+	Coord operator-( Coord const b ) const;
+	Coord operator=( Coord const b ) const;
 };
 
 #endif

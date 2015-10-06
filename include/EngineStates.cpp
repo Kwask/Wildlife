@@ -84,31 +84,7 @@ void EngineRender::cleanup() {}
 
 void EngineRender::populateVerticeVector()
 {
-	vertices.clear();
 
-	// This generates 6 vertices to create 2 triangles for each mob
-	// THIS IS NOT FINAL
-	for( unsigned int i = 0; i < Mob::container.size(); i++ )
-	{
-		int size = 10;
-		vertices.push_back( Mob::container[i]->xPos() );
-		vertices.push_back( Mob::container[i]->yPos() );
-
-		vertices.push_back( Mob::container[i]->xPos()+size );
-		vertices.push_back( Mob::container[i]->yPos() );
-		
-		vertices.push_back( Mob::container[i]->xPos() );
-		vertices.push_back( Mob::container[i]->yPos()+size );
-
-		vertices.push_back( Mob::container[i]->xPos() );
-		vertices.push_back( Mob::container[i]->yPos()+size );
-
-		vertices.push_back( Mob::container[i]->xPos()+size );
-		vertices.push_back( Mob::container[i]->yPos()+size );
-		
-		vertices.push_back( Mob::container[i]->xPos()+size );
-		vertices.push_back( Mob::container[i]->yPos() );
-	}
 }
 
 State* EngineRender::handle()

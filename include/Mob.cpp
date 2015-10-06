@@ -5,6 +5,7 @@
 #include "Mob.h"
 #include "Debug.h"
 #include "EngineStateMachine.h"
+#include "Coord.h"
 
 std::vector<Mob*> Mob::container;
 
@@ -38,12 +39,12 @@ int Mob::mobCount()
 
 int Mob::xPos()
 {
-	return x_pos_;
+	return pos_.xPos;
 }
 
 int Mob::yPos()
 {
-	return y_pos_;
+	return pos_.yPos;
 }
 
 Mob* Mob::getMob()
@@ -60,8 +61,8 @@ void Mob::initiliaze()
 {
 	target_ = nullptr;
 	
-	x_pos_ = Engine::getRand( EngineStateMachine::render.window_width );
-	y_pos_ = Engine::getRand( EngineStateMachine::render.window_height );
+	pos_.xPos = Engine::getRand( EngineStateMachine::render.window_width );
+	pos_.yPos = Engine::getRand( EngineStateMachine::render.window_height );
 
 	x_vel_ = 0;
 	y_vel_ = 0;
@@ -69,12 +70,12 @@ void Mob::initiliaze()
 
 void Mob::xPos( int const x_pos )
 {
-	x_pos_ = x_pos;
+	pos_.xPos = x_pos;
 }
 
 void Mob::yPos( int const y_pos )
 {
-	y_pos_ = y_pos;
+	pos_.yPos = y_pos;
 }
 
 void Mob::target( Mob* const target )

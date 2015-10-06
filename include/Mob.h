@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "FiniteStateMachine.h"
+#include "Coord.h"
 
 class Mob
 {
@@ -11,8 +12,7 @@ private:
 
 	Mob* target_;
 
-	int x_pos_;
-	int y_pos_;
+	Coord pos_;
 
 	float x_vel_;
 	float y_vel_;
